@@ -1,0 +1,24 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Login{% endblock title %}
+{% block main-content %}
+<div class="container">
+ <div class="row my-3">
+  <div class="col-sm-6 offset-sm-3">
+   <h3>Login</h3>
+   <hr>
+   <form action="" method="post" novalidate class="shadow p-5">
+    {% for f in form %}
+         {% csrf_token %}
+         <div class='form-group mb-3'>
+            {{f.label_tag}} {{f}} <small class='text-danger'>{{f.errors|striptags}}</small>
+         </div>
+      {% endfor %}
+      <small><a href="{% url 'password_reset' %}">Forgate Password ?</a></small>
+      <input type="submit" value="Login" class='btn btn-primary'>
+      <p class='mt-2 text-center'>Don't Have Account?--<a href="{% url 'customerregistration' %}">Register Here</a></p>
+   </form>
+  </div>
+ </div>
+</div>
+{% endblock main-content %}

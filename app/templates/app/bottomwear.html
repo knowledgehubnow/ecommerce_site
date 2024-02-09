@@ -1,0 +1,42 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Buy Now{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+ <div class="row">
+  <div class="col-sm-3">
+    <div class="card" style="width: 18rem;">
+        <div class="card-header h5">
+          Mobiles
+        </div>
+        <ul class="list-group list-group-flush">
+          <a href="{% url 'bottomwear' %}" class="list-group-item list-group-item-action" aria-current="true">All Mobiles</a>
+          <a href="{% url 'bottomwear_data' 'acer' %}" class="list-group-item list-group-item-action" aria-current="true">Redmi</a>
+          <a href="{% url 'bottomwear_data' 'samsung' %}" class="list-group-item list-group-item-action" aria-current="true">Sumsung</a>
+          <a href="{% url 'bottomwear_data' 'below' %}" class="list-group-item list-group-item-action" aria-current="true">Bellow 500</a>
+          <a href="{% url 'bottomwear_data' 'above' %}" class="list-group-item list-group-item-action" aria-current="true">Above 500</a>
+          <a href="#" class="list-group-item list-group-item-action" aria-current="true">Realme</a>
+        </ul>
+      </div>
+  </div>
+  <div class="col-sm-8 offset-sm-1">
+    <div class="container my-5">
+        <div class="row">
+            {% for product in bottomwear %}
+            <div class="col-sm-4 text-center mb-4">
+                <a href="{% url 'product-detail' product.id %}" class="btn">
+                    <div class="item">
+                        <img src="{{product.product_image.url}}" alt="" height="200px"><br>
+                        <span class="fw-bold">{{product.title}}</span>
+                        <br>
+                        <span class="fs-5">Rs. {{product.discounted_price}}</span>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+  </div>
+ </div>
+</div>
+{% endblock main-content %}
